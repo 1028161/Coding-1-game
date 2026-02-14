@@ -114,7 +114,7 @@ def move_player(key):
     elif key == "d" and px < game_data['width'] - 1:
         new_x += 1
     else:
-        return False  # No valid move
+        return False
 
     # Check obstacle collision
     if any(o["x"] == new_x and o["y"] == new_y for o in game_data['obstacles']):
@@ -204,8 +204,7 @@ def play_game(stdscr):
 
     stdscr.clear()
     stdscr.addstr(2, 2, "GAME OVER")
-    stdscr.addstr(3, 2,
-                  f"Final Score (Moves Survived): {game_data['player']['score']}")
+    stdscr.addstr(3, 2, f"Final Score (Moves Survived): {game_data['player']['score']}")
     stdscr.refresh()
     time.sleep(3)
 
