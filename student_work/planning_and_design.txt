@@ -5,7 +5,7 @@ Part I: Planning & Design (15 pts)
 * Main objects (player, obstacles, goals, enemies, etc.) are identified
 * Sketch a simple plan showing how the game will work step-by-step
 
-Game Idea:
+Game Idea: Snake
 
 
 Game Rules:
