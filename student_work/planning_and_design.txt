@@ -14,4 +14,4 @@ Game Rules: The player has to keep the snake, which is automatically moving, ins
 Major Game Elements: The player will control the snake stats, and there will be obstacles that randomly spawn throughout the game. Items give you a higher score and make the snake longer.
 
 
-Gameplay Process:The game will start with the snake 1 tile long, then once the player presses a direction, the snake activates. As more items are collected, obstacles start to spawn in and the snakes gets longer. The game will not end until the snake hits an obstacle or the border. Then it will print the results.
+Gameplay Process:The game will start with the snake 1 tile long, then once the player presses a direction, the snake activates. As more items are collected, obstacles start to spawn in and the snakes gets longer. The game will not end until the snake hits an obstacle or the border. Then it will print the results. The board will be a 9x9 box.
