@@ -11,7 +11,7 @@ Game Idea: Snake
 Game Rules: The player has to keep the snake, which is automatically moving, inside of the box. They will only be able to control when it turns. The snake has to collect items to get a higher score. 
 
 
-Major Game Elements:
+Major Game Elements: The player wil control the snake stats, and there will be obstacles that randomly spawn throughout the game.
 
 
 Gameplay Process:
