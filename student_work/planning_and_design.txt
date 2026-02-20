@@ -8,7 +8,7 @@ Part I: Planning & Design (15 pts)
 Game Idea: Snake
 
 
-Game Rules: The player has to keep the snake, which is automatically moving, inside of the box. They will only be able to control when it turns. The snake has to collect items to get a higher score. 
+Game Rules: The player has to keep the snake, which is automatically moving, inside of the box. They will only be able to control when it turns. The snake has to collect items to get a higher score. Also, the snake gets longer with every item it collects, which makes it more challenging as the game progresses.
 
 
 Major Game Elements: The player wil control the snake stats, and there will be obstacles that randomly spawn throughout the game.
