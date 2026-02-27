@@ -24,7 +24,7 @@ game_data = {
     ],
 
     # ASCII icons
-    'snake': "\U0001F730",
+    'snake': "\U0001F7E9",
     'obstacle': "\U0001FAA8 ",
     'apple': "\U0001F34E",
     'empty': "  "
