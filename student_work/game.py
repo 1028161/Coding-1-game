@@ -7,22 +7,21 @@
 
 # To make this work, you may have to type this into the terminal --> pip install curses
 import curses
+import random
 
 
 game_data = {
     'width': 6,
     'height': 6,
-    'player': {"x": 0, "y": 0, "score": 0, "energy": 10, "max_energy": 10},
+    'player': {"x": 0, "y": 0, "score": 0},
     'collectibles': [
         {"x": 2, "y": 1, "collected": False},
     ],
     'obstacles': [
         {"x": 1, "y": 2},
         {"x": 3, "y": 1},
-       # {"x": 2, "y": 7},
-       # {"x": 8, "y": 1},
-        {"x": 1, "y": 5}
-       # {"x": 6, "y": 5}
+        {"x": 1, "y": 5},
+        {"x": 5, "y": 3}
 
     ],
 
@@ -67,6 +66,8 @@ def draw_board(stdscr):
 def move_player(key):
     x = game_data['player']['x']
     y = game_data['player']['y']
+    new_x, new_y = x, y
+    key = key.lower()
 
     new_x, new_y = x, y
     key = key.lower()
@@ -91,6 +92,26 @@ def move_player(key):
     game_data['player']['y'] = new_y
     game_data['player']['score'] += 1
 
+def spawn_apple():
+    spawned_apple = [c for c in game_data['collectibles'] if not c['collected']]
+    if len(spawned_apple) >= 3:
+        return
+    if random.random() > 0.2:
+        return
+    while True:
+        x = random.randint(0, game_data['width'] - 1)
+        y = random.randint(0, game_data['height'] - 1)
+        
+        if (x, y) == (game_data['player']['x'], game_data['player']['y']):
+            continue
+        if any(o['x'] == x and o['y'] == y for o in game_data['obstacles']):
+            continue
+        if any(c['x'] == x and c['y'] == y and not c['collected'] for c in game_data['collectibles']):
+            continue
+
+        game_data['collectibles'].append({"x": x, "y": y, "collected": False})
+        break
+        
 def main(stdscr):
     curses.curs_set(0)
     stdscr.nodelay(True)
