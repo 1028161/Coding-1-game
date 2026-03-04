@@ -107,8 +107,8 @@ def main(stdscr):
             if key.lower() == "q":
                 break
 
-
-    stdscr.refresh()
-    stdscr.getkey()  # pause so player can see board
-
-curses.wrapper(draw_board)
+            move_player(key)
+            draw_board(stdscr)
+    # stdscr.refresh()
+    # stdscr.getkey()  # pause so player can see board
+curses.wrapper(main)
