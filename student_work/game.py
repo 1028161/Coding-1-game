@@ -91,6 +91,17 @@ def move_player(key):
     game_data['player']['x'] = new_x
     game_data['player']['y'] = new_y
     game_data['player']['score'] += 1
+        
+def change_direction(key):
+    if key == "w" and y > 0:
+        game_data['player']['current_direction'] == "N"
+    elif key == "s" and y < game_data['height'] - 1:
+        game_data['player']['current_direction'] == "S"
+    elif key == "a" and x > 0:
+        game_data['player']['current_direction'] == "W"
+    elif key == "d" and x < game_data['width'] - 1:
+        game_data['player']['current_direction'] == "E"
+
 
 def spawn_apple():
     spawned_apple = [c for c in game_data['collectibles'] if not c['collected']]
