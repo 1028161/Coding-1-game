@@ -8,12 +8,13 @@
 # To make this work, you may have to type this into the terminal --> pip install curses
 import curses
 import random
+import time
 
 
 game_data = {
     'width': 6,
     'height': 6,
-    'player': {"x": 0, "y": 0, "score": 0},
+    'player': {"x": 0, "y": 0, "score": 0, 'current_direction': "S"},
     'collectibles': [
         {"x": 2, "y": 1, "collected": False},
     ],
@@ -63,27 +64,24 @@ def draw_board(stdscr):
                   curses.color_pair(1))
     stdscr.refresh()
 
-def move_player(key):
+def move_player():
     x = game_data['player']['x']
     y = game_data['player']['y']
     new_x, new_y = x, y
-    key = key.lower()
+    #key = key.lower()
 
-    new_x, new_y = x, y
-    key = key.lower()
-
-    if key == "w" and y > 0:
+    if game_data['player']['current_direction'] == "N" and y > 0:
         new_y -= 1
-    elif key == "s" and y < game_data['height'] - 1:
+    elif game_data['player']['current_direction'] == "S" and y < game_data['height'] - 1:
         new_y += 1
-    elif key == "a" and x > 0:
+    elif game_data['player']['current_direction'] == "W" and x > 0:
         new_x -= 1
-    elif key == "d" and x < game_data['width'] - 1:
+    elif game_data['player']['current_direction'] == "E" and x < game_data['width'] - 1:
         new_x += 1
     else:
         return  # Invalid key or move off board
-
-    # Check for obstacles
+    
+        # Check for obstacles
     if any(o['x'] == new_x and o['y'] == new_y for o in game_data['obstacles']):
         return
 
@@ -93,14 +91,15 @@ def move_player(key):
     game_data['player']['score'] += 1
         
 def change_direction(key):
-    if key == "w" and y > 0:
-        game_data['player']['current_direction'] == "N"
-    elif key == "s" and y < game_data['height'] - 1:
-        game_data['player']['current_direction'] == "S"
-    elif key == "a" and x > 0:
-        game_data['player']['current_direction'] == "W"
-    elif key == "d" and x < game_data['width'] - 1:
-        game_data['player']['current_direction'] == "E"
+    # Accept both WASD and arrow keys (curses uses KEY_UP/KEY_DOWN/etc)
+    if key in ("w", "KEY_UP"):
+        game_data['player']['current_direction'] = "N"
+    elif key in ("s", "KEY_DOWN"):
+        game_data['player']['current_direction'] = "S"
+    elif key in ("a", "KEY_LEFT"):
+        game_data['player']['current_direction'] = "W"
+    elif key in ("d", "KEY_RIGHT"):
+        game_data['player']['current_direction'] = "E"
 
 
 def spawn_apple():
@@ -135,12 +134,17 @@ def main(stdscr):
         except:
             key = None
 
-        if key:
-            if key.lower() == "q":
-                break
+        if key and key.lower() == "q":
+            break
 
-            move_player(key)
-            draw_board(stdscr)
+        # Update direction when the player presses a movement key.
+        if key:
+            change_direction(key.lower())
+
+        # Move automatically each tick in the current direction.
+        move_player()
+        draw_board(stdscr)
+        time.sleep(0.3)
     # stdscr.refresh()
     # stdscr.getkey()  # pause so player can see board
 curses.wrapper(main)
