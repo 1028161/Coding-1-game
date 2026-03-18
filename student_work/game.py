@@ -37,11 +37,12 @@ game_data = {
 }
 
 def collided():
-    x = game_data['player']['x']
-    y = game_data['player']['y']
-    if any(o['x'] == x and o['y'] == y for o in game_data['obstacles']):
-        return True
-
+    for obstacle in game_data['obstacles']:
+        if game_data['player']['x'] == obstacle['x'] and game_data['player']['y'] == obstacle['y']:
+            game_data['collided'] = True
+if game_data['collided'] == True:
+    print("Game Over! You collided with an obstacle.")
+    
 def draw_board(stdscr):
     curses.start_color()
     curses.use_default_colors()
