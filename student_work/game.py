@@ -27,6 +27,7 @@ game_data = {
         {"x": 1, "y": 2}
 
     ],
+    'collided': False,
 
     # ASCII icons
     'snake': "\U0001F7E9",
@@ -34,6 +35,12 @@ game_data = {
     'apple': "\U0001F34E",
     'empty': "  "
 }
+
+def collided():
+    x = game_data['player']['x']
+    y = game_data['player']['y']
+    if any(o['x'] == x and o['y'] == y for o in game_data['obstacles']):
+        return True
 
 def draw_board(stdscr):
     curses.start_color()
