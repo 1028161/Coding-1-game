@@ -12,17 +12,17 @@ import time
 
 
 game_data = {
-    'width': 6,
-    'height': 6,
+    'width': 9,
+    'height': 9,
     'player': {"x": 0, "y": 0, "score": 0, 'current_direction': "S"},
     'collectibles': [
         {"x": 2, "y": 1, "collected": False},
     ],
     'obstacles': [
-        {"x": 1, "y": 2},
-        {"x": 3, "y": 1},
-        {"x": 0, "y": 5},
-        {"x": 5, "y": 3}
+        {"x": 7, "y": 3},
+        {"x": 4, "y": 1},
+        {"x": 3, "y": 8},
+        {"x": 2, "y": 5}
 
     ],
 
